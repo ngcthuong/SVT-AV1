@@ -561,8 +561,8 @@ extern "C" {
 #endif
 #define FASTER_SUBPEL 1 // 
 #if FASTER_SUBPEL
-#define SHUT_SUBPEL 1
-#define FAST_SUBPEL 0
+#define SHUT_SUBPEL 0
+#define FAST_SUBPEL 1
 #endif
 #endif
 // END  SVT_01 /////////////////////////////////////////////////////////
