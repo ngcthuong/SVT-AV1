@@ -4373,6 +4373,9 @@ EbErrorType signal_derivation_enc_dec_kernel_oq(
             context_ptr->enable_rdoq =
             sequence_control_set_ptr->static_config.enable_rdoq;
 
+#if SHUT_RDOQ
+    context_ptr->enable_rdoq = EB_FALSE;
+#endif
     // Derive redundant block
     if (pd_pass == PD_PASS_0)
         context_ptr->redundant_blk = EB_FALSE;

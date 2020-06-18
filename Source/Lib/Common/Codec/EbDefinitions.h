@@ -550,6 +550,12 @@ extern "C" {
 #define NEW_NSQ_RED_LEVEL       1 // Add new threshold level for NSQ cycle reduction
 #define ADD_SKIP_INTRA_SIGNAL   1 // Add ability to skip intra candidate injection
 
+#define RDOQ_LEVELS 1 // 
+#if RDOQ_LEVELS
+#define SHUT_RDOQ 1
+#define FAST_RDOQ 0
+#endif
+
 #endif
 // END  SVT_01 /////////////////////////////////////////////////////////
 
