@@ -554,14 +554,14 @@ extern "C" {
 #if RDOQ_LEVELS
 #define SHUT_RDOQ    0
 #define FAST_RDOQ    0
-#define FP_QUANT_OFF 1
+#define FP_QUANT_OFF 0
 #define I_SLICE_ONLY 0
 #define INTRA_ONLY   0
 #define LUMA_ONLY    0
 #endif
-#define FASTER_SUBPEL 0 // 
+#define FASTER_SUBPEL 1 // 
 #if FASTER_SUBPEL
-#define SHUT_SUBPEL 0
+#define SHUT_SUBPEL 1
 #define FAST_SUBPEL 0
 #endif
 #endif
