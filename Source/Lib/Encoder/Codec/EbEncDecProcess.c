@@ -5731,8 +5731,18 @@ EbErrorType signal_derivation_enc_dec_kernel_oq(
         else if (enc_mode <= ENC_M1)
             context_ptr->md_subpel_search_level = 2;
 #endif
+#if FAST_SUBPEL
+        else if (enc_mode <= ENC_M6)
+            context_ptr->md_subpel_search_level = 3;
+        else
+            context_ptr->md_subpel_search_level = 4;
+#else
         else
             context_ptr->md_subpel_search_level = 3;
+#endif
+#if SHUT_SUBPEL
+    context_ptr->md_subpel_search_level = 0;
+#endif
     md_subpel_search_controls(context_ptr, context_ptr->md_subpel_search_level);
 #endif
     // Set max_ref_count @ MD

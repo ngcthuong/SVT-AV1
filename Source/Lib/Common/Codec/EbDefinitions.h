@@ -552,10 +552,18 @@ extern "C" {
 
 #define RDOQ_LEVELS 1 // 
 #if RDOQ_LEVELS
-#define SHUT_RDOQ 0
-#define FAST_RDOQ 1
+#define SHUT_RDOQ    0
+#define FAST_RDOQ    0
+#define FP_QUANT_OFF 1
+#define I_SLICE_ONLY 0
+#define INTRA_ONLY   0
+#define LUMA_ONLY    0
 #endif
-
+#define FASTER_SUBPEL 0 // 
+#if FASTER_SUBPEL
+#define SHUT_SUBPEL 0
+#define FAST_SUBPEL 0
+#endif
 #endif
 // END  SVT_01 /////////////////////////////////////////////////////////
 
