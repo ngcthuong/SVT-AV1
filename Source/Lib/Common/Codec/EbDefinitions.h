@@ -552,8 +552,8 @@ extern "C" {
 
 #define RDOQ_LEVELS 1 // 
 #if RDOQ_LEVELS
-#define SHUT_RDOQ 1
-#define FAST_RDOQ 0
+#define SHUT_RDOQ 0
+#define FAST_RDOQ 1
 #endif
 
 #endif
