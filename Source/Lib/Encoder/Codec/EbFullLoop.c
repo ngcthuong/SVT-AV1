@@ -1775,6 +1775,11 @@ int32_t av1_quantize_inv_quantize(
     EbBool perform_rdoq = ((md_context->md_staging_skip_rdoq == EB_FALSE || is_encode_pass) &&
         md_context->enable_rdoq);
 
+
+#if INTRA_ONLY
+    if (is_inter)
+        perform_rdoq = EB_FALSE;
+#endif
     SequenceControlSet *scs_ptr = (SequenceControlSet *)pcs_ptr->scs_wrapper_ptr->object_ptr;
 #if FP_QUANT_OFF
     if (0) {
