@@ -1780,6 +1780,10 @@ int32_t av1_quantize_inv_quantize(
     if (is_inter)
         perform_rdoq = EB_FALSE;
 #endif
+#if INTER_ONLY
+    if (!is_inter)
+        perform_rdoq = EB_FALSE;
+#endif
     SequenceControlSet *scs_ptr = (SequenceControlSet *)pcs_ptr->scs_wrapper_ptr->object_ptr;
 #if FP_QUANT_OFF
     if (0) {

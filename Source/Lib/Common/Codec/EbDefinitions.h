@@ -556,7 +556,8 @@ extern "C" {
 #define FAST_RDOQ    0
 #define FP_QUANT_OFF 0
 #define I_SLICE_ONLY 0
-#define INTRA_ONLY   1
+#define INTRA_ONLY   0
+#define INTER_ONLY   1
 #define LUMA_ONLY    0
 #endif
 #define FASTER_SUBPEL 0 // 
