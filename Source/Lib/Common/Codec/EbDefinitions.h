@@ -563,7 +563,7 @@ extern "C" {
 #define INTER_ONLY   0
 #define LUMA_ONLY    0
 #define RDOQ_16X16_ABOVE_ONLY      0
-#define RDOQ_REF_ONLY 1
+#define RDOQ_REF_ONLY 0
 #endif
 #define FASTER_SUBPEL 0 // 
 #if FASTER_SUBPEL
@@ -571,7 +571,7 @@ extern "C" {
 #define FAST_SUBPEL 0
 #endif
 
-#define NIC_MD_STAGE_3 0 // 1 NIC
+#define NIC_MD_STAGE_3 1 // 1 NIC
 #endif
 // END  SVT_01 /////////////////////////////////////////////////////////
 
