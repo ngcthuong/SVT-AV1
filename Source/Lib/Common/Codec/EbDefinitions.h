@@ -553,7 +553,7 @@ extern "C" {
 
 #define SKIP_USLESS_PRED 0
 
-#define RDOQ_LEVELS 1 // 
+#define RDOQ_LEVELS 0 // 
 #if RDOQ_LEVELS
 #define SHUT_RDOQ    0
 #define FAST_RDOQ    0
@@ -571,7 +571,7 @@ extern "C" {
 #define FAST_SUBPEL 0
 #endif
 
-#define NIC_MD_STAGE_3 1 // 1 NIC
+#define NIC_MD_STAGE_3 0 // 1 NIC
 #endif
 // END  SVT_01 /////////////////////////////////////////////////////////
 
