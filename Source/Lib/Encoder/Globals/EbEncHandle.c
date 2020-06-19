@@ -2142,7 +2142,11 @@ void set_param_based_on_input(SequenceControlSet *scs_ptr)
 #if M8_SB_SIZE
 #if UPGRADE_M6_M7_M8
 #if JUNE17_ADOPTIONS
+#if M7_TO_M5_SB_128X128
+            scs_ptr->static_config.super_block_size = (scs_ptr->static_config.enc_mode <= ENC_M8) ? 128 : 64;
+#else
             scs_ptr->static_config.super_block_size = (scs_ptr->static_config.enc_mode <= ENC_M5) ? 128 : 64;
+#endif
 #else
 #if PRESET_SHIFITNG
             scs_ptr->static_config.super_block_size = (scs_ptr->static_config.enc_mode <= ENC_M4) ? 128 : 64;
@@ -2171,7 +2175,11 @@ void set_param_based_on_input(SequenceControlSet *scs_ptr)
 #if M8_SB_SIZE
 #if UPGRADE_M6_M7_M8
 #if JUNE17_ADOPTIONS
+#if M7_TO_M5_SB_128X128
+            scs_ptr->static_config.super_block_size = (scs_ptr->static_config.enc_mode <= ENC_M8) ? 128 : 64;
+#else
             scs_ptr->static_config.super_block_size = (scs_ptr->static_config.enc_mode <= ENC_M5) ? 128 : 64;
+#endif
 #else
 #if PRESET_SHIFITNG
             scs_ptr->static_config.super_block_size = (scs_ptr->static_config.enc_mode <= ENC_M4) ? 128 : 64;

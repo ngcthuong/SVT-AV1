@@ -3458,7 +3458,11 @@ EbErrorType signal_derivation_enc_dec_kernel_oq(
              context_ptr->disallow_4x4 = EB_FALSE;
 #if REVERT_WHITE // disallow_4x4
 #if JUNE17_ADOPTIONS
+#if M7_TO_M5_INTRA_4x4
+         else if (enc_mode <= ENC_M7)
+#else
          else if (enc_mode <= ENC_M6)
+#endif
 #else
 #if PRESET_SHIFITNG
          else if (enc_mode <= ENC_M5)
@@ -3484,7 +3488,11 @@ EbErrorType signal_derivation_enc_dec_kernel_oq(
          context_ptr->disallow_4x4 = EB_FALSE;
 #if REVERT_WHITE // disallow_4x4
 #if PRESET_SHIFITNG
+#if M7_TO_M5_INTRA_4x4
+     else if (enc_mode <= ENC_M7)
+#else
      else if (enc_mode <= ENC_M5)
+#endif
 #else
      else if (enc_mode <= ENC_M7)
 #endif
@@ -3676,7 +3684,11 @@ EbErrorType signal_derivation_enc_dec_kernel_oq(
             if (pcs_ptr->parent_pcs_ptr->sc_content_detected)
 #if MAY19_ADOPTIONS
 #if JUNE17_ADOPTIONS
+#if M7_TO_M5_GM
+                if (enc_mode <= ENC_M8)
+#else
                 if (enc_mode <= ENC_M5)
+#endif
 #else
 #if PRESET_SHIFITNG
                 if (enc_mode <= ENC_M4)
@@ -3720,7 +3732,11 @@ EbErrorType signal_derivation_enc_dec_kernel_oq(
                     context_ptr->global_mv_injection = 0;
 #if MAY19_ADOPTIONS
 #if JUNE17_ADOPTIONS
+#if M7_TO_M5_GM
+        else if (enc_mode <= ENC_M8)
+#else
         else if (enc_mode <= ENC_M5)
+#endif
 #else
 #if PRESET_SHIFITNG
         else if (enc_mode <= ENC_M4)
@@ -3767,7 +3783,11 @@ EbErrorType signal_derivation_enc_dec_kernel_oq(
 #if OPTIMIZE_NEAREST_NEW_NEAR
             if (pcs_ptr->parent_pcs_ptr->sc_content_detected)
 #if JUNE17_ADOPTIONS
+#if M7_TO_M5_NEW_NEAREST_COMB
+                if (enc_mode <= ENC_M8)
+#else
                 if (enc_mode <= ENC_M5)
+#endif
 #else
                 if (enc_mode <= ENC_M4)
 #endif
@@ -4118,7 +4138,11 @@ EbErrorType signal_derivation_enc_dec_kernel_oq(
 #endif
 #endif
 #if JUNE17_ADOPTIONS
+#if M7_TO_M5_PRED_ME
+                  else if (enc_mode <= ENC_M7)
+#else
                 else if (enc_mode <= ENC_M6)
+#endif
                     context_ptr->predictive_me_level = 2;
 #endif
 #if REVERT_WHITE // Pred_ME
@@ -4419,7 +4443,11 @@ EbErrorType signal_derivation_enc_dec_kernel_oq(
             if (pcs_ptr->parent_pcs_ptr->sc_content_detected)
 #if MAY19_ADOPTIONS
 #if JUNE17_ADOPTIONS
+#if M7_TO_M5_EDGE_BASED_SKIP_ANGULAR
+                if (enc_mode <= ENC_M8)
+#else
                 if (enc_mode <= ENC_M5)
+#endif
 #else
 #if PRESET_SHIFITNG
                 if (enc_mode <= ENC_M4)
@@ -4502,7 +4530,11 @@ EbErrorType signal_derivation_enc_dec_kernel_oq(
                 enc_mode <= ENC_M1)
 #else
 #if JUNE11_ADOPTIONS
+#if M7_TO_M5_PRUNE_REF_RECT
+                enc_mode <= ENC_M8)
+#else
                 enc_mode <= ENC_M5)
+#endif
 #else
 #if JUNE8_ADOPTIONS
                 enc_mode <= ENC_M2)
@@ -5605,7 +5637,11 @@ EbErrorType signal_derivation_enc_dec_kernel_oq(
     else
 #if MAY23_M0_ADOPTIONS
 #if JUNE11_ADOPTIONS
+#if M7_TO_M5_DEPTH_RDUCTION
+        if (enc_mode <= ENC_M8)
+#else
         if (enc_mode <= ENC_M5)
+#endif
 #else
 #if JUNE8_ADOPTIONS
         if (enc_mode <= ENC_M0 || (enc_mode <= ENC_M1 && pcs_ptr->parent_pcs_ptr->sc_content_detected))
@@ -5711,7 +5747,11 @@ EbErrorType signal_derivation_enc_dec_kernel_oq(
 #if PERFORM_SUB_PEL_MD
     if (pd_pass == PD_PASS_0)
 #if ADD_SKIP_INTRA_SIGNAL
+#if M7_TO_M5_SUB_PEL_PD_PASS_0
+        context_ptr->md_subpel_search_level = enc_mode <= ENC_M8 ? 4 : 0;
+#else
         context_ptr->md_subpel_search_level = enc_mode <= ENC_M6 ? 4 : 0;
+#endif
 #else
         context_ptr->md_subpel_search_level = 4;
 #endif
@@ -5876,7 +5916,11 @@ EbErrorType signal_derivation_enc_dec_kernel_oq(
     if (pcs_ptr->slice_type == I_SLICE)
         context_ptr->skip_intra = 0;
     else if (pd_pass == PD_PASS_0)
+#if M7_TO_M5_INTRA_PD_PASS_0
+        if (enc_mode <= ENC_M7)
+#else
         if (enc_mode <= ENC_M6)
+#endif
             context_ptr->skip_intra = 0;
         else
             context_ptr->skip_intra = 1;
@@ -8632,7 +8676,11 @@ static void perform_pred_depth_refinement(SequenceControlSet *scs_ptr, PictureCo
 #endif
 #if MAY16_7PM_ADOPTIONS
 #if JUNE17_ADOPTIONS
+#if M7_TO_M5_PRED_DEPTH_REFINMENT
+                            if (pcs_ptr->enc_mode <= ENC_M8) {
+#else
                             if (pcs_ptr->enc_mode <= ENC_M5) {
+#endif
 #else
 #if JUNE11_ADOPTIONS
                             if (pcs_ptr->enc_mode <= ENC_M3) {

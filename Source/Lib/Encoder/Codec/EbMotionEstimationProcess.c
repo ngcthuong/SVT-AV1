@@ -208,7 +208,11 @@ void* set_me_hme_params_oq(
             else if (pcs_ptr->enc_mode <= ENC_M5) {
 #else
 #if JUNE17_ADOPTIONS
+#if M7_TO_M5_HME_ME
+            else if (pcs_ptr->enc_mode <= ENC_M8) {
+#else
             else if (pcs_ptr->enc_mode <= ENC_M5) {
+#endif
 #else
 #if PRESET_SHIFITNG
             else if (pcs_ptr->enc_mode <= ENC_M4) {
@@ -351,7 +355,11 @@ void* set_me_hme_params_oq(
 #endif
 #if APR25_1PM_ADOPTIONS
 #if JUNE17_ADOPTIONS
+#if M7_TO_M5_HME_ME
+    else if (pcs_ptr->enc_mode <= ENC_M8) {
+#else
     else if (pcs_ptr->enc_mode <= ENC_M5) {
+#endif
 #else
 #if PRESET_SHIFITNG
     else if (pcs_ptr->enc_mode <= ENC_M4) {
@@ -901,7 +909,11 @@ EbErrorType signal_derivation_me_kernel_oq(
         if (pcs_ptr->sc_content_detected)
 #if MAY19_ADOPTIONS
 #if JUNE17_ADOPTIONS
+#if M7_TO_M5_GM
+            if (enc_mode <= ENC_M8)
+#else
             if (enc_mode <= ENC_M5)
+#endif
 #else
 #if PRESET_SHIFITNG
             if (enc_mode <= ENC_M4)
@@ -945,7 +957,11 @@ EbErrorType signal_derivation_me_kernel_oq(
                 context_ptr->me_context_ptr->compute_global_motion = EB_FALSE;
 #if MAY19_ADOPTIONS
 #if JUNE17_ADOPTIONS
+#if M7_TO_M5_GM
+        else if (enc_mode <= ENC_M8)
+#else
         else if (enc_mode <= ENC_M5)
+#endif
 #else
 #if PRESET_SHIFITNG
         else if (enc_mode <= ENC_M4)
@@ -1187,7 +1203,11 @@ void* tf_set_me_hme_params_oq(
 #if APR22_ADOPTIONS
 #if UPGRADE_M6_M7_M8
 #if PRESET_SHIFITNG
+#if M7_TO_M5_TF
+    if (pcs_ptr->enc_mode <= ENC_M8)
+#else
     if (pcs_ptr->enc_mode <= ENC_M5)
+#endif
 #else
     if (pcs_ptr->enc_mode <= ENC_M7)
 #endif
@@ -1204,7 +1224,11 @@ void* tf_set_me_hme_params_oq(
 #if APR22_ADOPTIONS
 #if UPGRADE_M6_M7_M8
 #if PRESET_SHIFITNG
+#if M7_TO_M5_TF
+    if (pcs_ptr->enc_mode <= ENC_M8)
+#else
     if (pcs_ptr->enc_mode <= ENC_M5)
+#endif
 #else
     if (pcs_ptr->enc_mode <= ENC_M7)
 #endif

@@ -1583,7 +1583,11 @@ void scale_nics(PictureControlSet *pcs_ptr, ModeDecisionContext *context_ptr) {
         nics_scling_level = 7;
 #endif
 #if JUNE17_ADOPTIONS
+#if M7_TO_M5_NIC
+    else if (pcs_ptr->enc_mode <= ENC_M7)
+#else
     else if (pcs_ptr->enc_mode <= ENC_M6)
+#endif
 #else
 #if PRESET_SHIFITNG
     else if (pcs_ptr->enc_mode <= ENC_M4)

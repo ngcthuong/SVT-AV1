@@ -551,6 +551,33 @@ extern "C" {
 #define ADD_SKIP_INTRA_SIGNAL   1 // Add ability to skip intra candidate injection
 
 
+#define M7_TO_M5_DIFF 1
+#if M7_TO_M5_DIFF
+#define M7_TO_M5_INTRA_4x4               0
+#define M7_TO_M5_GM                      0
+#define M7_TO_M5_NEW_NEAREST_COMB        0
+#define M7_TO_M5_PRUNE_REF_RECT          0
+#define M7_TO_M5_OBMC                    0
+#define M7_TO_M5_HME_ME                  0
+#define M7_TO_M5_MRP                     0
+#define M7_TO_M5_SB_128X128              0  
+#define M7_TO_M5_TF                      0  
+#define M7_TO_M5_DEPTH_RDUCTION          0  
+#define M7_TO_M5_EDGE_BASED_SKIP_ANGULAR 0
+#define M7_TO_M5_UPDATE_CDF              0
+#define M7_TO_M5_WM                      0
+#define M7_TO_M5_LOOP_FILTER             0
+#define M7_TO_M5_CDEF_FILTER             0
+#define M7_TO_M5_PRED_DEPTH_REFINMENT    0
+#define M7_TO_M5_FILTER_INTRA            0
+#define M7_TO_M5_PRED_ME                 0
+#define M7_TO_M5_NSQ                     0
+#define M7_TO_M5_RESTORATION             0
+#define M7_TO_M5_NIC                     0
+#define M7_TO_M5_SUB_PEL_PD_PASS_0       0
+#define M7_TO_M5_INTRA_PD_PASS_0         0
+#endif
+
 #define SKIP_USLESS_PRED 0
 
 #define RDOQ_LEVELS 0 // 

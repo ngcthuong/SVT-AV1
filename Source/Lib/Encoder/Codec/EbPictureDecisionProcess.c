@@ -996,7 +996,11 @@ EbErrorType signal_derivation_multi_processes_oq(
     // Can enable everywhere b/c TF is off for SC anyway; remove fake diff
 #if UPGRADE_M6_M7_M8
 #if PRESET_SHIFITNG
+#if M7_TO_M5_TF
+    if (pcs_ptr->enc_mode <= ENC_M8) {
+#else
     if (pcs_ptr->enc_mode <= ENC_M5) {
+#endif
 #else
     if (pcs_ptr->enc_mode <= ENC_M7) {
 #endif
@@ -1170,7 +1174,11 @@ EbErrorType signal_derivation_multi_processes_oq(
     // Set disallow_nsq
 #if APR25_12AM_ADOPTIONS
 #if JUNE11_ADOPTIONS
+#if M7_TO_M5_NSQ
+    if (pcs_ptr->enc_mode <= ENC_M8) {
+#else
     if (pcs_ptr->enc_mode <= ENC_M5) {
+#endif
 #else
 #if APR25_1PM_ADOPTIONS
 #if PRESET_SHIFITNG
@@ -1392,7 +1400,11 @@ EbErrorType signal_derivation_multi_processes_oq(
 #endif
         pcs_ptr->disallow_all_nsq_blocks_above_16x16 = EB_FALSE;
 #if JUNE17_ADOPTIONS
+#if M7_TO_M5_NSQ
+    else if (pcs_ptr->enc_mode <= ENC_M7)
+#else
     else if (pcs_ptr->enc_mode <= ENC_M6)
+#endif
 #else
 #if PRESET_SHIFITNG
     else if (pcs_ptr->enc_mode <= ENC_M5)
@@ -1736,7 +1748,11 @@ EbErrorType signal_derivation_multi_processes_oq(
 #if M8_LOOP_FILTER && !UPGRADE_M8 || REVERT_WHITE
 #if REVERT_WHITE //  loop_filter_mode
 #if PRESET_SHIFITNG
+#if M7_TO_M5_LOOP_FILTER
+        if (pcs_ptr->enc_mode <= ENC_M8 || pcs_ptr->sc_content_detected)
+#else
         if (pcs_ptr->enc_mode <= ENC_M5 || pcs_ptr->sc_content_detected)
+#endif
 #else
         if (pcs_ptr->enc_mode <= ENC_M7 || pcs_ptr->sc_content_detected)
 #endif
@@ -1779,7 +1795,11 @@ EbErrorType signal_derivation_multi_processes_oq(
         if (pcs_ptr->sc_content_detected)
 #if UPGRADE_M6_M7_M8
 #if PRESET_SHIFITNG
+#if M7_TO_M5_CDEF_FILTER
+            if (pcs_ptr->enc_mode <= ENC_M8)
+#else
             if (pcs_ptr->enc_mode <= ENC_M5)
+#endif
 #else
             if (pcs_ptr->enc_mode <= ENC_M7)
 #endif
@@ -1796,7 +1816,11 @@ EbErrorType signal_derivation_multi_processes_oq(
         else
 #if UPGRADE_M6_M7_M8
 #if PRESET_SHIFITNG
+#if M7_TO_M5_CDEF_FILTER
+            if (pcs_ptr->enc_mode <= ENC_M8)
+#else
             if (pcs_ptr->enc_mode <= ENC_M5)
+#endif
 #else
             if (pcs_ptr->enc_mode <= ENC_M7)
 #endif
@@ -1947,7 +1971,11 @@ EbErrorType signal_derivation_multi_processes_oq(
     else
 #if MAY19_ADOPTIONS
 #if JUNE17_ADOPTIONS
+#if M7_TO_M5_WM
+        if (pcs_ptr->enc_mode <= ENC_M8)
+#else
         if (pcs_ptr->enc_mode <= ENC_M5)
+#endif
 #else
 #if PRESET_SHIFITNG
         if (pcs_ptr->enc_mode <= ENC_M4)
@@ -2556,7 +2584,11 @@ EbErrorType signal_derivation_multi_processes_oq(
     if (perform_filtering) {
 #if UPGRADE_M6_M7_M8
 #if PRESET_SHIFITNG
+#if M7_TO_M5_TF
+        if (pcs_ptr->enc_mode <= ENC_M8) {
+#else
         if (pcs_ptr->enc_mode <= ENC_M5) {
+#endif
 #else
         if (pcs_ptr->enc_mode <= ENC_M7) {
 #endif
@@ -6505,7 +6537,11 @@ void* picture_decision_kernel(void *input_ptr)
                                         pcs_ptr->ref_list1_count_try = MIN(pcs_ptr->ref_list1_count, 2);
                                     }
 #if JUNE17_ADOPTIONS
+#if M7_TO_M5_MRP
+                                    else if (pcs_ptr->enc_mode <= ENC_M8) {
+#else
                                     else if (pcs_ptr->enc_mode <= ENC_M5) {
+#endif
                                         pcs_ptr->ref_list0_count_try = MIN(pcs_ptr->ref_list0_count, 2);
                                         pcs_ptr->ref_list1_count_try = MIN(pcs_ptr->ref_list1_count, 1);
                                     }
@@ -6575,7 +6611,11 @@ void* picture_decision_kernel(void *input_ptr)
                                 else {
 #if MRP_ADOPTIONS
 #if JUNE17_ADOPTIONS
+#if M7_TO_M5_MRP
+                                    if (pcs_ptr->enc_mode <= ENC_M8) {
+#else
                                     if (pcs_ptr->enc_mode <= ENC_M5) {
+#endif
 #else
 #if PRESET_SHIFITNG
                                     if (pcs_ptr->enc_mode <= ENC_M4) {

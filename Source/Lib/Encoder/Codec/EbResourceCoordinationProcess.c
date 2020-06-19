@@ -216,7 +216,11 @@ EbErrorType signal_derivation_pre_analysis_oq(SequenceControlSet *     scs_ptr,
 #else
 #if REVERT_BLUE
 #if JUNE17_ADOPTIONS
+#if M7_TO_M5_RESTORATION
+            scs_ptr->seq_header.enable_restoration = (pcs_ptr->enc_mode <= ENC_M7) ? 1 : 0;
+#else
             scs_ptr->seq_header.enable_restoration = (pcs_ptr->enc_mode <= ENC_M6) ? 1 : 0;
+#endif
 #else
 #if PRESET_SHIFITNG
             scs_ptr->seq_header.enable_restoration = (pcs_ptr->enc_mode <= ENC_M5) ? 1 : 0;
@@ -948,7 +952,11 @@ void *resource_coordination_kernel(void *input_ptr) {
 #if MAY19_ADOPTIONS
                 scs_ptr->seq_header.enable_filter_intra =
 #if JUNE17_ADOPTIONS
+#if M7_TO_M5_FILTER_INTRA
+                (scs_ptr->static_config.enc_mode <= ENC_M8) ? 1 : 0;
+#else
                 (scs_ptr->static_config.enc_mode <= ENC_M6) ? 1 : 0;
+#endif
 #else
 #if PRESET_SHIFITNG
                 (scs_ptr->static_config.enc_mode <= ENC_M4) ? 1 : 0;

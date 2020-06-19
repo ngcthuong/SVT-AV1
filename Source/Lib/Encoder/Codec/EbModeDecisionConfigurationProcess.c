@@ -1079,7 +1079,11 @@ EbErrorType signal_derivation_mode_decision_config_kernel_oq(
     if (pcs_ptr->parent_pcs_ptr->sc_content_detected)
 #if APR25_12AM_ADOPTIONS
 #if JUNE17_ADOPTIONS
+#if M7_TO_M5_UPDATE_CDF
+        if (pcs_ptr->enc_mode <= ENC_M8)
+#else
         if (pcs_ptr->enc_mode <= ENC_M5)
+#endif
 #else
 #if PRESET_SHIFITNG
         if (pcs_ptr->enc_mode <= ENC_M4)
@@ -1100,7 +1104,11 @@ EbErrorType signal_derivation_mode_decision_config_kernel_oq(
     else
 #if MAY19_ADOPTIONS
 #if JUNE17_ADOPTIONS
+#if M7_TO_M5_UPDATE_CDF
+        if (pcs_ptr->enc_mode <= ENC_M8)
+#else
         if (pcs_ptr->enc_mode <= ENC_M5)
+#endif
 #else
 #if PRESET_SHIFITNG
         if (pcs_ptr->enc_mode <= ENC_M4)
@@ -1181,7 +1189,11 @@ EbErrorType signal_derivation_mode_decision_config_kernel_oq(
                 pcs_ptr->pic_filter_intra_mode = 0;
 #if MAY19_ADOPTIONS
 #if JUNE17_ADOPTIONS
+#if M7_TO_M5_FILTER_INTRA
+        else if (pcs_ptr->enc_mode <= ENC_M7)
+#else
         else if (pcs_ptr->enc_mode <= ENC_M6)
+#endif
 #else
 #if PRESET_SHIFITNG
         else if (pcs_ptr->enc_mode <= ENC_M4)
@@ -1404,7 +1416,11 @@ EbErrorType signal_derivation_mode_decision_config_kernel_oq(
 #if UPGRADE_M6_M7_M8
 #if APR24_ADOPTIONS_M6_M7
 #if JUNE17_ADOPTIONS
+#if M7_TO_M5_OBMC
+            else if (pcs_ptr->parent_pcs_ptr->enc_mode <= ENC_M8)
+#else
             else if (pcs_ptr->parent_pcs_ptr->enc_mode <= ENC_M5)
+#endif
 #else
 #if PRESET_SHIFITNG
             else if (pcs_ptr->parent_pcs_ptr->enc_mode <= ENC_M4)
