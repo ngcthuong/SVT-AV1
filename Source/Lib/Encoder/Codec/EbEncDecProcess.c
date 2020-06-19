@@ -4366,7 +4366,10 @@ EbErrorType signal_derivation_enc_dec_kernel_oq(
 #else
             else if (enc_mode <= ENC_M3)
 #endif
-#if I_SLICE_ONLY
+
+#if RDOQ_REF_ONLY
+                context_ptr->enable_rdoq = pcs_ptr->parent_pcs_ptr->is_used_as_reference_flag ? EB_TRUE : EB_FALSE;
+#elif I_SLICE_ONLY
                 context_ptr->enable_rdoq = pcs_ptr->slice_type == I_SLICE ? EB_TRUE : EB_FALSE;
 #else
                 context_ptr->enable_rdoq = EB_TRUE;
