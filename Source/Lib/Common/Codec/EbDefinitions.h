@@ -550,6 +550,9 @@ extern "C" {
 #define NEW_NSQ_RED_LEVEL       1 // Add new threshold level for NSQ cycle reduction
 #define ADD_SKIP_INTRA_SIGNAL   1 // Add ability to skip intra candidate injection
 
+
+#define SKIP_USLESS_PRED 0
+
 #define RDOQ_LEVELS 1 // 
 #if RDOQ_LEVELS
 #define SHUT_RDOQ    0
@@ -558,7 +561,10 @@ extern "C" {
 #define I_SLICE_ONLY 0
 #define INTRA_ONLY   0
 #define INTER_ONLY   0
-#define LUMA_ONLY    1
+#define LUMA_ONLY    0
+#define RDOQ_32X32_ABOVE_ONLY    1
+#define RDOQ_16x16_BELOW_ONLY    0
+
 #endif
 #define FASTER_SUBPEL 0 // 
 #if FASTER_SUBPEL

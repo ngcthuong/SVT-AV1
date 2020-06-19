@@ -1788,6 +1788,12 @@ int32_t av1_quantize_inv_quantize(
     if (component_type == COMPONENT_CHROMA || component_type == COMPONENT_CHROMA_CB || component_type == COMPONENT_CHROMA_CR)
         perform_rdoq = EB_FALSE;
 #endif
+#if RDOQ_32X32_ABOVE_ONLY
+
+    if (width < 32 || height < 32)
+        perform_rdoq = EB_FALSE;
+
+#endif
     SequenceControlSet *scs_ptr = (SequenceControlSet *)pcs_ptr->scs_wrapper_ptr->object_ptr;
 #if FP_QUANT_OFF
     if (0) {
