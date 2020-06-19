@@ -562,7 +562,7 @@ extern "C" {
 #define INTRA_ONLY   0
 #define INTER_ONLY   0
 #define LUMA_ONLY    0
-#define RDOQ_32X32_ABOVE_ONLY    1
+#define RDOQ_8x8_ABOVE_ONLY      1
 #define RDOQ_16x16_BELOW_ONLY    0
 
 #endif
