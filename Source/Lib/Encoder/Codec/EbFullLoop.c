@@ -1788,9 +1788,9 @@ int32_t av1_quantize_inv_quantize(
     if (component_type == COMPONENT_CHROMA || component_type == COMPONENT_CHROMA_CB || component_type == COMPONENT_CHROMA_CR)
         perform_rdoq = EB_FALSE;
 #endif
-#if RDOQ_8x8_ABOVE_ONLY
+#if RDOQ_16X16_ABOVE_ONLY
 
-    if (width < 8 || height < 8)
+    if (width < 16 || height < 16)
         perform_rdoq = EB_FALSE;
 
 #endif
