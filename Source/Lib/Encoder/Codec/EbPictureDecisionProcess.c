@@ -49,7 +49,9 @@ typedef struct  TfControls {
     uint8_t window_size;
 #if FAST_TF_LEVELS
     uint8_t noise_based_window_adjust;
-    uint8_t sub_pel;
+    uint8_t half_pel_search_enabled;      
+    uint8_t quartert_pel_search_enabled;  
+    uint8_t eight_pel_search_enabled;     
 #endif
 }TfControls;
 #endif
@@ -5546,6 +5548,9 @@ void derive_tf_window_params(
 #endif
 #if TF_LEVELS
 #if NOISE_BASED_TF_FRAMES
+#if FAST_TF_LEVELS
+    adjust_num = 0;
+#endif
     int altref_nframes = MIN(scs_ptr->static_config.altref_nframes, context_ptr->tf_ctrls.window_size + adjust_num);
 #else
     int altref_nframes = MIN(scs_ptr->static_config.altref_nframes, context_ptr->tf_ctrls.window_size);
