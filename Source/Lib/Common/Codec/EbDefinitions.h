@@ -556,12 +556,13 @@ extern "C" {
 #define DEPTH_PROB_PRECISION 10000
 #endif
 
-#define IMPROVED_M6_M7   1
+#define IMPROVED_M6_M7        1 // Improve M6 & M7
 #if IMPROVED_M6_M7
-#define IMPROVED_TF_LEVELS  1
-#define M6_M7_INTRA_4x4     1
-#define M7_PRED_ME          1
-#define M7_NIC              1
+#define IMPROVED_TF_LEVELS  1 // Improve tf levels; f(window_size, noise-based adjust)
+#define M6_M7_INTRA_4x4     1 // Use M5_INTRA_4x4 in M6 & M7
+#define M7_PRED_ME          1 // Use M6_Pred_ME in M7
+#define M6_M7_NIC           1 // NIC=1 @ md_stage_3()
+#define M6_LOOP_FILTER_MODE 1 // Use M5_LOOP_FILTER in M6
 #endif
 #endif
 // END  SVT_01 /////////////////////////////////////////////////////////

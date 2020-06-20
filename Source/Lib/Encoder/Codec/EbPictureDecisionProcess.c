@@ -1783,7 +1783,11 @@ EbErrorType signal_derivation_multi_processes_oq(
 #if M8_LOOP_FILTER && !UPGRADE_M8 || REVERT_WHITE
 #if REVERT_WHITE //  loop_filter_mode
 #if PRESET_SHIFITNG
+#if M6_LOOP_FILTER_MODE
+        if (pcs_ptr->enc_mode <= ENC_M6 || pcs_ptr->sc_content_detected)
+#else
         if (pcs_ptr->enc_mode <= ENC_M5 || pcs_ptr->sc_content_detected)
+#endif
 #else
         if (pcs_ptr->enc_mode <= ENC_M7 || pcs_ptr->sc_content_detected)
 #endif
