@@ -3571,11 +3571,7 @@ EbErrorType signal_derivation_enc_dec_kernel_oq(
          context_ptr->disallow_4x4 = EB_FALSE;
 #if REVERT_WHITE // disallow_4x4
 #if PRESET_SHIFITNG
-#if M6_M7_INTRA_4x4
-     else if (enc_mode <= ENC_M7)
-#else
      else if (enc_mode <= ENC_M5)
-#endif
 #else
      else if (enc_mode <= ENC_M7)
 #endif
