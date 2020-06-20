@@ -561,7 +561,7 @@ extern "C" {
 #define IMPROVED_TF_LEVELS  1
 #define M6_M7_INTRA_4x4     1
 #define M7_PRED_ME          1
-#define M7_NIC              0
+#define M7_NIC              1
 #endif
 #endif
 // END  SVT_01 /////////////////////////////////////////////////////////
