@@ -3762,7 +3762,7 @@ void set_md_stage_counts(PictureControlSet *pcs_ptr, ModeDecisionContext *contex
                                                       : context_ptr->md_stage_3_count[CAND_CLASS_3];
 #if M7_NIC
     uint8_t use_nic_1_last_stage;
-    if (pcs_ptr->enc_mode <= ENC_M6) {
+    if (pcs_ptr->enc_mode <= ENC_M5) {
         use_nic_1_last_stage = 0;
     }
     else {
