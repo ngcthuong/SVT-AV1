@@ -560,8 +560,7 @@ extern "C" {
 #if IMPROVED_M6_M7
 #define IMPROVED_TF_LEVELS  1
 #define M6_M7_INTRA_4x4     1
-#define M7_PRED_ME          0
-#define M7_FILTER_INTRA     0
+#define M7_PRED_ME          1
 #define M7_NIC              0
 #endif
 #endif
