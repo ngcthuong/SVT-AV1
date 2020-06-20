@@ -598,7 +598,8 @@ extern "C" {
 #define FAST_SUBPEL 0
 #endif
 
-#define NIC_MD_STAGE_3 0 // 1 NIC
+#define FAST_TF_LEVELS  1 // 1 NIC
+#define NIC_MD_STAGE_3  0 // 1 NIC
 #endif
 // END  SVT_01 /////////////////////////////////////////////////////////
 

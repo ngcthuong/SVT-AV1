@@ -47,6 +47,10 @@ extern PredictionStructureConfigEntry six_level_hierarchical_pred_struct[];
 typedef struct  TfControls {
     uint8_t enabled;
     uint8_t window_size;
+#if FAST_TF_LEVELS
+    uint8_t noise_based_window_adjust;
+    uint8_t sub_pel;
+#endif
 }TfControls;
 #endif
 /**************************************
@@ -886,6 +890,34 @@ EbErrorType generate_mini_gop_rps(
 }
 
 #if TF_LEVELS
+#if FAST_TF_LEVELS
+void set_tf_controls(PictureDecisionContext *context_ptr, uint8_t tf_level) {
+
+    TfControls *tf_ctrls = &context_ptr->tf_ctrls;
+
+    switch (tf_level)
+    {
+    case 0:
+        tf_ctrls->enabled = 1;
+        tf_ctrls->window_size = 7;
+        break;
+    case 1:
+        tf_ctrls->enabled = 1;
+        tf_ctrls->window_size = 5;
+        break;
+    case 2:
+        tf_ctrls->enabled = 1;
+        tf_ctrls->window_size = 3;
+        break;
+    case 3:
+        tf_ctrls->enabled = 0;
+        break;
+    default:
+        assert(0);
+        break;
+    }
+}
+#else
 void set_tf_controls(PictureDecisionContext *context_ptr, uint8_t tf_level) {
 
     TfControls *tf_ctrls = &context_ptr->tf_ctrls;
@@ -913,6 +945,7 @@ void set_tf_controls(PictureDecisionContext *context_ptr, uint8_t tf_level) {
         break;
     }
 }
+#endif
 #endif
 /******************************************************
 * Derive Multi-Processes Settings for OQ
@@ -2598,6 +2631,12 @@ EbErrorType signal_derivation_multi_processes_oq(
                 context_ptr->tf_level = 3;
         }
         else {
+#if FAST_TF_LEVELS
+            if (pcs_ptr->temporal_layer_index == 0)
+                context_ptr->tf_level = 0;
+            else
+                context_ptr->tf_level = 3;
+#else
 #if ADD_SKIP_INTRA_SIGNAL
             if (pcs_ptr->enc_mode <= ENC_M6) {
                 if (pcs_ptr->temporal_layer_index == 0)
@@ -2616,6 +2655,7 @@ EbErrorType signal_derivation_multi_processes_oq(
 #endif
             else
                 context_ptr->tf_level = 3;
+#endif
 #endif
         }
 #else

@@ -3464,9 +3464,9 @@ void set_md_stage_counts(PictureControlSet *pcs_ptr, ModeDecisionContext *contex
 
 #if NIC_MD_STAGE_3
         context_ptr->md_stage_3_count[CAND_CLASS_0] = context_ptr->md_stage_2_count[CAND_CLASS_0] = 1;
-        ////context_ptr->md_stage_3_count[CAND_CLASS_1] = context_ptr->md_stage_2_count[CAND_CLASS_1] = 1;
-        ////context_ptr->md_stage_3_count[CAND_CLASS_2] = context_ptr->md_stage_2_count[CAND_CLASS_2] = 1;
-        ////context_ptr->md_stage_3_count[CAND_CLASS_3] = context_ptr->md_stage_2_count[CAND_CLASS_3] = 1;
+        context_ptr->md_stage_3_count[CAND_CLASS_1] = context_ptr->md_stage_2_count[CAND_CLASS_1] = 1;
+        context_ptr->md_stage_3_count[CAND_CLASS_2] = context_ptr->md_stage_2_count[CAND_CLASS_2] = 1;
+        context_ptr->md_stage_3_count[CAND_CLASS_3] = context_ptr->md_stage_2_count[CAND_CLASS_3] = 1;
 #endif
 
     }
