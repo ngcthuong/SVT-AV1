@@ -907,6 +907,10 @@ void set_tf_controls(PictureDecisionContext *context_ptr, uint8_t tf_level) {
     case 2:
         tf_ctrls->enabled = 1;
         tf_ctrls->window_size = 3;
+        tf_ctrls->noise_based_window_adjust = 1;
+    case 3:
+        tf_ctrls->enabled = 1;
+        tf_ctrls->window_size = 3;
         tf_ctrls->noise_based_window_adjust = 0;
         break;
     default:
@@ -2602,9 +2606,15 @@ EbErrorType signal_derivation_multi_processes_oq(
             else
                 context_ptr->tf_level = 0;
         }
-        else {
+        else if (pcs_ptr->enc_mode <= ENC_M6) {
             if (pcs_ptr->temporal_layer_index == 0 || (pcs_ptr->temporal_layer_index == 1 && scs_ptr->static_config.hierarchical_levels >= 3))
                 context_ptr->tf_level = 2;
+            else
+                context_ptr->tf_level = 0;
+        }
+        else {
+            if (pcs_ptr->temporal_layer_index == 0 || (pcs_ptr->temporal_layer_index == 1 && scs_ptr->static_config.hierarchical_levels >= 3))
+                context_ptr->tf_level = 3;
             else
                 context_ptr->tf_level = 0;
         }
