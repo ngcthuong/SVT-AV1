@@ -2632,8 +2632,8 @@ EbErrorType signal_derivation_multi_processes_oq(
         }
         else {
 #if FAST_TF_LEVELS
-            if (pcs_ptr->temporal_layer_index == 0)
-                context_ptr->tf_level = 0;
+            if (pcs_ptr->temporal_layer_index == 0 || (pcs_ptr->temporal_layer_index == 1 && scs_ptr->static_config.hierarchical_levels >= 3))
+                context_ptr->tf_level = 2;
             else
                 context_ptr->tf_level = 3;
 #else
