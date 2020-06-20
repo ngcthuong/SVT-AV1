@@ -4264,7 +4264,11 @@ EbErrorType signal_derivation_enc_dec_kernel_oq(
     else if (pcs_ptr->parent_pcs_ptr->sc_content_detected)
         context_ptr->use_sad_at_pme = EB_TRUE;
     else
+#if M7_PRED_ME
+        context_ptr->use_sad_at_pme = (enc_mode <= ENC_M5) ? EB_FALSE : EB_TRUE;
+#else
         context_ptr->use_sad_at_pme = EB_FALSE;
+#endif
 #endif
 
     // Derive md_staging_mode
