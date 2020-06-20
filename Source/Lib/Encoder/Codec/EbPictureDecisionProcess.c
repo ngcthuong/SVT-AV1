@@ -47,6 +47,9 @@ extern PredictionStructureConfigEntry six_level_hierarchical_pred_struct[];
 typedef struct  TfControls {
     uint8_t enabled;
     uint8_t window_size;
+#if IMPROVED_TF_LEVELS
+    uint8_t noise_based_window_adjust;
+#endif
 }TfControls;
 #endif
 /**************************************
@@ -886,6 +889,32 @@ EbErrorType generate_mini_gop_rps(
 }
 
 #if TF_LEVELS
+#if IMPROVED_TF_LEVELS
+void set_tf_controls(PictureDecisionContext *context_ptr, uint8_t tf_level) {
+
+    TfControls *tf_ctrls = &context_ptr->tf_ctrls;
+
+    switch (tf_level)
+    {
+    case 0:
+        tf_ctrls->enabled = 0;
+        break;
+    case 1:
+        tf_ctrls->enabled = 1;
+        tf_ctrls->window_size = 7;
+        tf_ctrls->noise_based_window_adjust = 1;
+        break;
+    case 2:
+        tf_ctrls->enabled = 1;
+        tf_ctrls->window_size = 3;
+        tf_ctrls->noise_based_window_adjust = 0;
+        break;
+    default:
+        assert(0);
+        break;
+    }
+}
+#else
 void set_tf_controls(PictureDecisionContext *context_ptr, uint8_t tf_level) {
 
     TfControls *tf_ctrls = &context_ptr->tf_ctrls;
@@ -913,6 +942,7 @@ void set_tf_controls(PictureDecisionContext *context_ptr, uint8_t tf_level) {
         break;
     }
 }
+#endif
 #endif
 /******************************************************
 * Derive Multi-Processes Settings for OQ
@@ -2564,7 +2594,24 @@ EbErrorType signal_derivation_multi_processes_oq(
 #endif
 
 
-
+#if IMPROVED_TF_LEVELS
+    if (perform_filtering) {
+        if (pcs_ptr->enc_mode <= ENC_M5) {
+            if (pcs_ptr->temporal_layer_index == 0 || (pcs_ptr->temporal_layer_index == 1 && scs_ptr->static_config.hierarchical_levels >= 3))
+                context_ptr->tf_level = 1;
+            else
+                context_ptr->tf_level = 0;
+        }
+        else {
+            if (pcs_ptr->temporal_layer_index == 0 || (pcs_ptr->temporal_layer_index == 1 && scs_ptr->static_config.hierarchical_levels >= 3))
+                context_ptr->tf_level = 2;
+            else
+                context_ptr->tf_level = 0;
+        }
+    }
+    else
+        context_ptr->tf_level = 0;
+#else
     if (perform_filtering) {
 #if UPGRADE_M6_M7_M8
 #if PRESET_SHIFITNG
@@ -2616,6 +2663,7 @@ EbErrorType signal_derivation_multi_processes_oq(
     }
     else
         context_ptr->tf_level = 3;
+#endif
     set_tf_controls(context_ptr, context_ptr->tf_level);
 #endif
     return return_error;
@@ -5465,6 +5513,9 @@ void derive_tf_window_params(
     // we will not change the number of frames for key frame filtering, which is
     // to avoid visual quality drop.
     int adjust_num = 0;
+#if IMPROVED_TF_LEVELS
+    if (context_ptr->tf_ctrls.noise_based_window_adjust) {
+#endif
 #if 0
     if (num_frames == 1) {  // `arnr_max_frames = 1` is used to disable filtering.
         adjust_num = 0;
@@ -5482,6 +5533,9 @@ void derive_tf_window_params(
     }
     else if (noise_levels[0] < 2.0) {
         adjust_num = 2;
+    }
+#endif
+#if IMPROVED_TF_LEVELS
     }
 #endif
 #if TF_LEVELS
